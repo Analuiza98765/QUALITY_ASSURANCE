@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - ReadStack</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+
+            <div class="icon">📚</div>
+
+            <h1>READSTACK</h1>
+
+            <p>Crie sua conta</p>
+
+        </div>
+
+        <div class="login-box">
+
+            <form method="POST">
+
+                <label>Usuário</label>
+                <input type="text" name="username" required>
+
+                <label>E-mail</label>
+                <input type="email" name="email" required>
+
+                <label>Senha</label>
+                <input type="password" name="password" required>
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                <button type="submit">Cadastrar</button>
+
+            </form>
+
+            <div class="register">
+                Já possui uma conta?
+                <a href="/">Entrar</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

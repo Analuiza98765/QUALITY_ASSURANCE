@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Adicionar Livro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="login-box">
+
+            <h1>Adicionar Livro 📚</h1>
+
+            <form method="POST">
+
+                <label>Título</label>
+                <input type="text" name="title" required>
+
+                <label>Autor</label>
+                <input type="text" name="author" required>
+
+                <label>Status</label>
+
+                <select name="status">
+
+                    <option>Quero Ler</option>
+                    <option>Lendo</option>
+                    <option>Lido</option>
+
+                </select>
+
+                <button type="submit">Salvar Livro</button>
+                <a class="cancel-button" href="/dashboard">
+                    Cancelar
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

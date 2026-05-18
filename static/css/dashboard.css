@@ -1,0 +1,276 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F4EEE8;
+}
+
+/* HEADER */
+
+header {
+    background-color: #F6CDA5;
+
+    padding: 20px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #6B3F2A;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* PESQUISA */
+
+.search-bar input {
+
+    width: 350px;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.search-bar input:focus {
+
+    box-shadow: 0 0 0 3px rgba(248, 160, 60, 0.3);
+}
+
+.search-info {
+
+    padding: 0 25px;
+
+    margin-top: 20px;
+}
+
+.search-info p {
+
+    color: #6B3F2A;
+
+    font-size: 18px;
+}
+
+/* BOTÕES HEADER */
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.add-button {
+
+    background-color: #F8A03C;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    transition: 0.3s;
+}
+
+.add-button:hover {
+    opacity: 0.9;
+}
+
+.logout-button {
+
+    background-color: #6B3F2A;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.logout-button:hover {
+    opacity: 0.9;
+}
+
+/* PERFIL */
+
+.profile {
+
+    width: 45px;
+    height: 45px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+}
+
+.profile i {
+    color: #6B3F2A;
+}
+
+/* MAIN */
+
+main {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 25px;
+}
+
+.column {
+    flex: 1;
+}
+
+.column-header {
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.column h2 {
+    color: #6B3F2A;
+}
+
+.counter {
+
+    background-color: #F8A03C;
+
+    color: white;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 14px;
+}
+
+/* CARDS */
+
+.book-card {
+
+    background-color: #F6CDA5;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    margin-bottom: 15px;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+}
+
+.book-card h3 {
+    color: #6B3F2A;
+}
+
+.book-card p {
+    color: #7A5A4A;
+}
+
+/* SEM RESULTADOS */
+
+.empty-message {
+
+    background-color: rgba(255,255,255,0.5);
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    color: #7A5A4A;
+
+    text-align: center;
+}
+
+/* AÇÕES */
+
+.book-actions {
+
+    margin-top: 15px;
+
+    display: flex;
+    gap: 12px;
+}
+
+.book-actions a {
+
+    width: 35px;
+    height: 35px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #6B3F2A;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.book-actions a:hover {
+
+    background-color: #F8A03C;
+
+    color: white;
+}
+
+.book-cover {
+
+    width: 100%;
+
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    margin-bottom: 15px;
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ReadStack</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+
+        <div class="logo">
+            <h1>
+                <i class="fa-solid fa-book-open"></i>
+                ReadStack
+            </h1>
+        </div>
+
+        <form class="search-bar" method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Pesquisar livros..."
+                value="{{ search }}"
+            >
+
+        </form>
+
+        <div class="header-buttons">
+
+            <a class="add-button" href="/add_book">
+                <i class="fa-solid fa-plus"></i>
+                Adicionar Livro
+            </a>
+
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <a class="logout-button" href="/logout">
+                Sair
+            </a>
+
+        </div>
+
+    </header>
+
+    {% if search %}
+
+    <div class="search-info">
+
+        <p>
+            Resultados para:
+            <strong>"{{ search }}"</strong>
+        </p>
+
+    </div>
+
+    {% endif %}
+
+    <main>
+
+        <!-- QUERO LER -->
+        <div class="column">
+
+            <div class="column-header">
+
+                <h2>Quero Ler</h2>
+
+                <span class="counter">
+                    {{ want_to_read|length }}
+                </span>
+
+            </div>
+
+            {% if want_to_read|length == 0 %}
+
+            <p class="empty-message">
+                Nenhum livro encontrado
+            </p>
+
+            {% endif %}
+
+            {% for book in want_to_read %}
+
+            <div class="book-card">
+
+                {% if book[5] %}
+
+                <img class="book-cover" src="{{ book[5] }}">
+
+                {% endif %}
+
+                <h3>{{ book[1] }}</h3>
+
+                <p>{{ book[2] }}</p>
+
+                <div class="book-actions">
+
+                    <a href="/move_book/{{ book[0] }}/Lendo">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="/delete_book/{{ book[0] }}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- LENDO -->
+        <div class="column">
+
+            <div class="column-header">
+
+                <h2>Lendo</h2>
+
+                <span class="counter">
+                    {{ reading|length }}
+                </span>
+
+            </div>
+
+            {% if reading|length == 0 %}
+
+            <p class="empty-message">
+                Nenhum livro encontrado
+            </p>
+
+            {% endif %}
+
+            {% for book in reading %}
+
+            <div class="book-card">
+
+                {% if book[5] %}
+
+                <img class="book-cover" src="{{ book[5] }}">
+
+                {% endif %}
+
+                <h3>{{ book[1] }}</h3>
+
+                <p>{{ book[2] }}</p>
+
+                <p>Progresso: {{ book[4] }}%</p>
+
+                <div class="book-actions">
+
+                    <a href="/move_book/{{ book[0] }}/Lido">
+                        <i class="fa-solid fa-check"></i>
+                    </a>
+
+                    <a href="/move_book/{{ book[0] }}/Quero Ler">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+
+                    <a href="/delete_book/{{ book[0] }}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- LIDO -->
+        <div class="column">
+
+            <div class="column-header">
+
+                <h2>Lido</h2>
+
+                <span class="counter">
+                    {{ finished|length }}
+                </span>
+
+            </div>
+
+            {% if finished|length == 0 %}
+
+            <p class="empty-message">
+                Nenhum livro encontrado
+            </p>
+
+            {% endif %}
+
+            {% for book in finished %}
+
+            <div class="book-card">
+
+                {% if book[5] %}
+
+                <img class="book-cover" src="{{ book[5] }}">
+
+                {% endif %}
+
+                <h3>{{ book[1] }}</h3>
+
+                <p>{{ book[2] }}</p>
+
+                <div class="book-actions">
+
+                    <a href="/move_book/{{ book[0] }}/Lendo">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+
+                    <a href="/delete_book/{{ book[0] }}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+</body>
+</html>
