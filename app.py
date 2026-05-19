@@ -3,6 +3,8 @@ import sqlite3
 import re
 import requests
 
+API_KEY="AIzaSyCYmZbNt9oftoDDibA1hnjv1wfZiTApwwk"
+
 app = Flask(__name__)
 
 app.secret_key = 'readstack_secret'
@@ -219,29 +221,43 @@ def add_book():
         # =========================
         # GOOGLE BOOKS API
         # =========================
-        url = f"https://www.googleapis.com/books/v1/volumes?q={title}"
+        url = f"https://www.googleapis.com/books/v1/volumes?q={title}&key={API_KEY}"
 
         response = requests.get(url)
 
         data = response.json()
+        print(data)
 
         author = "Autor desconhecido"
         thumbnail = ""
         description = "Sem descrição"
 
-        if 'items' in data:
-
+        if 'items' in data and len(data['items']) > 0:
+    
             book_info = data['items'][0]['volumeInfo']
 
+            # AUTOR
             if 'authors' in book_info:
+
                 author = book_info['authors'][0]
 
+            # CAPA
             if 'imageLinks' in book_info:
-                thumbnail = book_info['imageLinks'].get('thumbnail', '')
 
+                thumbnail = book_info['imageLinks'].get(
+                    'thumbnail',
+                    ''
+                )
+
+                thumbnail = thumbnail.replace(
+                    'http://',
+                    'https://'
+                )
+
+            # DESCRIÇÃO
             if 'description' in book_info:
-                description = book_info['description']
 
+                description = book_info['description']
         # =========================
         # INSERIR LIVRO
         # =========================
@@ -288,6 +304,33 @@ def move_book(book_id, status):
         SET status = ?
         WHERE id = ?
     """, (status, book_id))
+
+    connection.commit()
+    connection.close()
+
+    return redirect('/dashboard')
+# =========================
+# ATUALIZAR PROGRESSO
+# =========================
+@app.route('/update_progress/<int:book_id>', methods=['POST'])
+def update_progress(book_id):
+
+    if 'user' not in session:
+        return redirect('/')
+
+    progress = request.form['progress']
+
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE books
+        SET progress = ?
+        WHERE id = ?
+    """, (
+        progress,
+        book_id
+    ))
 
     connection.commit()
     connection.close()

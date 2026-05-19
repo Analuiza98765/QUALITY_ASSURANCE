@@ -153,7 +153,44 @@
 
                 <p>{{ book[2] }}</p>
 
-                <p>Progresso: {{ book[4] }}%</p>
+                <!-- BARRA DE PROGRESSO -->
+
+                <div class="progress-container">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{ book[4] }}%;"
+                    ></div>
+
+                </div>
+
+                <p class="progress-text">
+                    {{ book[4] }}%
+                </p>
+
+                <!-- FORMULÁRIO -->
+
+                <form
+                    class="progress-form"
+                    action="/update_progress/{{ book[0] }}"
+                    method="POST"
+                >
+
+                    <input
+                        type="number"
+                        name="progress"
+                        min="0"
+                        max="100"
+                        value="{{ book[4] }}"
+                    >
+
+                    <button type="submit">
+                        Atualizar
+                    </button>
+
+                </form>
+
+                <!-- AÇÕES -->
 
                 <div class="book-actions">
 
